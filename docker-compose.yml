@@ -1,0 +1,15 @@
+version: '3'
+
+# ref: https://docs.gitlab.com/runner/register/#docker
+# register:
+# docker-compose run gitlab-runner register
+
+services:
+  gitlab-runner:
+    build: ./
+    restart: always
+    volumes:
+      - ./config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - CONTAINER=docker
