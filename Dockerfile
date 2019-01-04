@@ -12,7 +12,7 @@ COPY --from=builder /usr/bin/gitlab-runner /gitlab-runner
 
 RUN useradd gitlab-runner
 
-RUN chown -R gitlab-runner:gitlab-runner /app
+RUN mkdir -p /app chown -R gitlab-runner:gitlab-runner /app
 
 RUN dnf install sudo procps hostname -y && \
     dnf clean all && \
