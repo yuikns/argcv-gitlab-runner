@@ -10,9 +10,11 @@ COPY --from=builder /usr/bin/gitlab-runner /gitlab-runner
 #       yum install gitlab-runner -y && \
 #       /usr/share/gitlab-runner/post-install
 
+RUN mkdir -p /app 
+
 RUN useradd gitlab-runner
 
-RUN mkdir -p /app && chown -R gitlab-runner:gitlab-runner /app
+RUN chown -R gitlab-runner:gitlab-runner /app
 
 RUN dnf install sudo procps hostname -y && \
     dnf clean all && \
