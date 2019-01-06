@@ -17,8 +17,9 @@ RUN useradd gitlab-runner
 RUN chown -R gitlab-runner:gitlab-runner /app
 
 RUN dnf install sudo procps hostname -y && \
-    dnf clean all && \
-    echo "ALL        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/all
+    dnf clean all
+
+RUN echo "ALL        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/all
 
 ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
